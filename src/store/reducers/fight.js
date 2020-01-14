@@ -18,6 +18,7 @@ const fight = (state = initialState, action) => {
 			return { ...state, isStarted: false, isError: action.isError };
 		case FIGHT_IS_END:
 			return { ...state, isStarted: false, isEnd: true };
+
 		default:
 			return state;
 	}

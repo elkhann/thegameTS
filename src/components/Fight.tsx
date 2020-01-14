@@ -1,6 +1,14 @@
 import React from 'react';
 
-const Fight = ({ addHp, nextEnemy, attack }) => {
+interface Props {
+	addHp: Function;
+	nextEnemy: Function;
+	attack: Function;
+}
+
+const Fight: React.FC<Props> = (props) => {
+	const { addHp, nextEnemy, attack } = props;
+
 	const startFightHandle = () => {
 		attack();
 	};

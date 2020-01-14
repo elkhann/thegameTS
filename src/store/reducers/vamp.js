@@ -1,11 +1,12 @@
-import { CHANGE_VAMP_HP, ADD_100_HP } from '../constants/';
+import { CHANGE_VAMP_HP, ADD_100_HP, VDAMAGE } from '../constants/';
 
 const initialState = {
 	name: 'Vamp',
 	maxHp: 110,
 	hp: 100,
-	attack: 10,
-	def: 2
+	att: 10,
+	def: 2,
+	damage: null
 };
 
 const vamp = (state = initialState, action) => {
@@ -16,6 +17,8 @@ const vamp = (state = initialState, action) => {
 		case ADD_100_HP:
 			const addhp = 100 + state.hp;
 			return { ...state, hp: addhp };
+		case VDAMAGE:
+			return { ...state, damage: action.payload };
 		default:
 			return state;
 	}
