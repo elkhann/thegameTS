@@ -1,58 +1,33 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { StoreState } from '../types';
-
-import * as actions from '../store/actions';
+import {
+	startFight,
+	endFight,
+	addHp,
+	nextEnemy,
+	changeVampHp,
+	changeEnemyHp,
+	setVDamage,
+	setEDamage
+} from '../store/actions';
 
 import Fight from '../components/Fight';
 
-export interface Props {
-	vamp: {
-		name: string;
-		hp: number;
-		maxHp: number;
-		att: number;
-		def: number;
-		damage: number;
-	};
-
-	enemy: {
-		name: string;
-		hp: number;
-		maxHp: number;
-		att: number;
-		def: number;
-		damage: number;
-	};
-
-	addHp: () => void;
-	nextEnemy: () => void;
-	start: Function;
-	end: () => void;
-	changeVampHp: (hp: number) => void;
-	changeEnemyHp: (hp: number) => void;
-	setVDamage: (vdamage: number) => void;
-	setEDamage: (edamage: number) => void;
-	startFightHandle: (e: React.MouseEvent) => void;
-}
-
-const FightContainer = (props: any) => {
-	const {
-		vamp,
-		enemy,
-		nextEnemy,
-		addHp,
-		start,
-		end,
-		changeVampHp,
-		changeEnemyHp,
-		setVDamage,
-		setEDamage
-	} = props;
-
+const FightContainer = ({
+	vamp,
+	enemy,
+	nextEnemy,
+	addHp,
+	start,
+	end,
+	changeVampHp,
+	changeEnemyHp,
+	setVDamage,
+	setEDamage
+}) => {
 	useEffect(
 		() => {
-			const damage = (a: number, d: number) => {
+			const damage = (a, d) => {
 				let damage = 1;
 				if (a >= d) {
 					damage = Math.floor(a * (1 + (a - d) * 0.05));
@@ -81,15 +56,14 @@ const FightContainer = (props: any) => {
 			addHp
 		]
 	);
-
 	const attack = () => {
 		start();
 
-		let turn: number = 0;
-		let side: boolean = true;
-		let winner: 'enemy' | 'vamp' | '' = '';
+		let turn = 0;
+		let side = true;
+		let winner = false;
 
-		const vampAttack = (vamp: any, enemy: any) => {
+		const vampAttack = (vamp, enemy) => {
 			if (vamp.hp > 0 && enemy.hp > 0) {
 				console.log(
 					`Vamp[${vamp.hp}] наносит Enemy[${enemy.hp}] - ${vamp.damage} урона | Enemy[${Math.floor(
@@ -101,7 +75,7 @@ const FightContainer = (props: any) => {
 			}
 		};
 
-		const enemyAttack = (vamp: any, enemy: any) => {
+		const enemyAttack = (vamp, enemy) => {
 			if (vamp.hp > 0 && enemy.hp > 0) {
 				console.log(
 					`Enemy[${enemy.hp}] наносит Vamp[${vamp.hp}] - ${enemy.damage} урона | Vamp[${Math.floor(
@@ -115,8 +89,8 @@ const FightContainer = (props: any) => {
 
 		const interval = setInterval(() => {
 			if (vamp.hp <= 0 || enemy.hp <= 0) {
-				setVDamage(0);
-				setEDamage(0);
+				setVDamage(null);
+				setEDamage(null);
 				if (vamp.hp <= 0) {
 					winner = 'enemy';
 				} else if (enemy.hp <= 0) {
@@ -150,36 +124,35 @@ const FightContainer = (props: any) => {
 	);
 };
 
-const mapStateToProps = (state: StoreState) => {
-	const { vamp, enemy } = state;
+const mapStateToProps = ({ vamp, enemy }) => {
 	return { vamp, enemy };
 };
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch) => {
 	return {
 		start: () => {
-			dispatch(actions.startFight());
+			dispatch(startFight());
 		},
 		end: () => {
-			dispatch(actions.endFight());
+			dispatch(endFight());
 		},
 		addHp: () => {
-			dispatch(actions.addHp());
+			dispatch(addHp());
 		},
 		nextEnemy: () => {
-			dispatch(actions.nextEnemy());
+			dispatch(nextEnemy());
 		},
-		changeVampHp: (hp: number) => {
-			dispatch(actions.changeVampHp(hp));
+		changeVampHp: (hp) => {
+			dispatch(changeVampHp(hp));
 		},
-		changeEnemyHp: (hp: number) => {
-			dispatch(actions.changeEnemyHp(hp));
+		changeEnemyHp: (hp) => {
+			dispatch(changeEnemyHp(hp));
 		},
-		setVDamage: (damage: number) => {
-			dispatch(actions.setVDamage(damage));
+		setVDamage: (damage) => {
+			dispatch(setVDamage(damage));
 		},
-		setEDamage: (damage: number) => {
-			dispatch(actions.setEDamage(damage));
+		setEDamage: (damage) => {
+			dispatch(setEDamage(damage));
 		}
 	};
 };

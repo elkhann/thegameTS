@@ -1,9 +1,9 @@
 import React from 'react';
 
 interface Props {
-	addHp: Function;
-	nextEnemy: Function;
-	attack: Function;
+	addHp: () => void;
+	nextEnemy: () => void;
+	attack: () => void;
 }
 
 const Fight: React.FC<Props> = (props) => {
