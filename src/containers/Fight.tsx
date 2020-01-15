@@ -1,15 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import {
-  startFight,
-  endFight,
-  addHp,
-  nextEnemy,
-  changeVampHp,
-  changeEnemyHp,
-  setVDamage,
-  setEDamage
-} from "../store/actions";
+import * as actions from "../store/actions";
 import { StoreState } from "../types";
 
 import Fight from "../components/Fight";
@@ -157,33 +148,42 @@ const mapStateToProps = (state: StoreState) => {
   return { vamp, enemy };
 };
 
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    start: () => {
-      dispatch(startFight());
-    },
-    end: () => {
-      dispatch(endFight());
-    },
-    addHp: () => {
-      dispatch(addHp());
-    },
-    nextEnemy: () => {
-      dispatch(nextEnemy());
-    },
-    changeVampHp: (hp: number) => {
-      dispatch(changeVampHp(hp));
-    },
-    changeEnemyHp: (hp: number) => {
-      dispatch(changeEnemyHp(hp));
-    },
-    setVDamage: (damage: number) => {
-      dispatch(setVDamage(damage));
-    },
-    setEDamage: (damage: number) => {
-      dispatch(setEDamage(damage));
-    }
-  };
+const mapDispatchToProps = {
+  start: actions.startFight.request,
+  end: actions.endFight,
+  addHp: actions.addHp,
+  nextEnemy: actions.nextEnemy,
+  changeVampHp: actions.changeVampHp,
+  changeEnemyHp: actions.changeEnemyHp,
+  setVDamage: actions.setVDamage,
+  setEDamage: actions.setEDamage
 };
+// const mapDispatchToProps2 = (dispatch: any) => {
+//   return {
+//     start: () => {
+//       dispatch(actions.startFight());
+//     },
+//     end: () => {
+//       dispatch(actions.endFight());
+//     },
+//     addHp: () => {
+//       dispatch(actions.addHp());
+//     },
+//     nextEnemy: () => {
+//       dispatch(actions.nextEnemy());
+//     },
+//     changeVampHp: actions.changeVampHp,
+
+//     changeEnemyHp: (hp: number) => {
+//       dispatch(actions.changeEnemyHp(hp));
+//     },
+//     setVDamage: (damage: number) => {
+//       dispatch(actions.setVDamage(damage));
+//     },
+//     setEDamage: (damage: number) => {
+//       dispatch(actions.setEDamage(damage));
+//     }
+//   };
+// };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FightContainer);

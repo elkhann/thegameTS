@@ -1,72 +1,62 @@
-import {
-  FIGHT_IS_STARTED,
-  FIGHT_HAS_ERRORED,
-  FIGHT_IS_END,
-  CHANGE_VAMP_HP,
-  CHANGE_ENEMY_HP,
-  ADD_100_HP,
-  CREATE_ENEMY,
-  VDAMAGE,
-  EDAMAGE
-} from "../constants/";
+import * as constants from "../constants/";
 
 export const startFight = () => {
   console.log("Start fight");
   return {
-    type: FIGHT_IS_STARTED
+    type: constants.FIGHT_IS_STARTED
   };
 };
 
 export const endFight = () => {
   console.log("End fight");
   return {
-    type: FIGHT_IS_END
+    type: constants.FIGHT_IS_END
   };
 };
 
 export const errorFight = error => {
   return {
-    type: FIGHT_HAS_ERRORED,
-    error: error
+    type: constants.FIGHT_HAS_ERRORED,
+    payload: error
   };
 };
 
 export const changeVampHp = hp => {
   return {
-    type: CHANGE_VAMP_HP,
-    hp
+    type: constants.CHANGE_VAMP_HP,
+    payload: hp
   };
 };
 
 export const changeEnemyHp = hp => {
   return {
-    type: CHANGE_ENEMY_HP,
-    hp
+    type: constants.CHANGE_ENEMY_HP,
+    payload: hp
   };
 };
 
 export const addHp = () => {
   return {
-    type: ADD_100_HP
+    type: constants.ADD_100_HP
   };
 };
 
 export const nextEnemy = () => {
   return {
-    type: CREATE_ENEMY
+    type: constants.CREATE_ENEMY
   };
 };
 
 export const setVDamage = damage => {
   return {
-    type: VDAMAGE,
+    type: constants.VDAMAGE,
     payload: damage
   };
 };
 
 export const setEDamage = damage => {
   return {
-    type: EDAMAGE,
+    type: constants.EDAMAGE,
     payload: damage
   };
 };
