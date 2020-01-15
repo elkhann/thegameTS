@@ -2,14 +2,14 @@ import React from "react";
 import { StoreState } from "../types/index";
 
 const Vamp: React.FC<StoreState> = props => {
-  const { vamp, enemy, fight } = props;
+  const { vamp, enemy } = props;
   return (
     <div>
       Vamp info:
       <div>Name: {vamp.name}</div>
       <div>
         HP:{`${vamp.hp}/${vamp.maxHp}`}
-        {fight.isStarted && <span>| -{enemy.damage}HP</span>}
+        {enemy.damage > 0 ? <span>| -{enemy.damage}HP</span> : ""}
       </div>
       <div>Attack: {vamp.att}</div>
       <div>Defence: {vamp.def}</div>

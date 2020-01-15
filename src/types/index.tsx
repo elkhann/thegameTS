@@ -8,7 +8,7 @@ export interface StoreState {
     maxHp: number;
     att: number;
     def: number;
-    damage: number | null;
+    damage: number;
   };
 
   enemy: {
@@ -17,7 +17,7 @@ export interface StoreState {
     maxHp: number;
     att: number;
     def: number;
-    damage: number | null;
+    damage: number;
   };
 
   fight: {
