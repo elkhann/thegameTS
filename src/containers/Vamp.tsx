@@ -1,22 +1,22 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { StoreState } from '../types/index';
+import React from "react";
+import { connect } from "react-redux";
+import { StoreState } from "../types/index";
 // import {} from '../store/actions';
 
-import Vamp from '../components/Vamp';
+import Vamp from "../components/Vamp";
 
-const VampContainer: React.FC<StoreState> = (props) => {
-	const { vamp, enemy } = props;
-	return (
-		<div>
-			<Vamp vamp={vamp} enemy={enemy} />
-		</div>
-	);
+const VampContainer: React.FC<StoreState> = props => {
+  const { vamp, enemy, fight } = props;
+  return (
+    <div>
+      <Vamp vamp={vamp} enemy={enemy} fight={fight} />
+    </div>
+  );
 };
 
 const mapStateToProps = (store: StoreState) => {
-	const { vamp, enemy } = store;
-	return { vamp, enemy };
+  const { vamp, enemy, fight } = store;
+  return { vamp, enemy, fight };
 };
 
 // const mapDispatchToProps = (dispatch) => {};

@@ -1,26 +1,26 @@
-import React from 'react';
+import React from "react";
 
 interface Props {
-	addHp: () => void;
-	nextEnemy: () => void;
-	attack: () => void;
+  addHp: () => void;
+  nextEnemy: () => void;
+  attack: () => void;
 }
 
-const Fight: React.FC<Props> = (props) => {
-	const { addHp, nextEnemy, attack } = props;
+const Fight: React.FC<Props> = props => {
+  const { addHp, nextEnemy, attack } = props;
 
-	const startFightHandle = () => {
-		attack();
-	};
+  const startFightHandle = () => {
+    attack();
+  };
 
-	return (
-		<div>
-			<h1>Fight</h1>
-			<button onClick={() => startFightHandle()}>Fight</button>
-			<button onClick={() => addHp()}>Add hp</button>
-			<button onClick={() => nextEnemy()}>Next enemy</button>
-		</div>
-	);
+  return (
+    <div>
+      <h1>Fight</h1>
+      <button onClick={() => startFightHandle()}>Fight</button>
+      <button onClick={() => addHp()}>Add hp</button>
+      <button onClick={() => nextEnemy()}>Next enemy</button>
+    </div>
+  );
 };
 
 export default Fight;
